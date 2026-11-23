@@ -1,0 +1,169 @@
+{
+  "title": "热力采购的概率负荷、气价阶梯和锁仓",
+  "source_note": "本文件中的机构、事件、规则和数值均为人工构造的本地合成资料。",
+  "contract": "meter 的 gas_mwh 与 heat_mwh 均为小时量，空值表示缺测。weather 的 issued_at 和 valid_at 为 UTC，temperature_c 为摄氏度。dispatch.mode 的 backup_electric 表示改用电锅炉。tariff 的 block_cap_mwh 为小时上限，daily_min_mwh 为当天最少提取量，多个合同的 shared_pipe 相同即共用 pipe.hour_limit。nomination 的 approved_mwh 空值表示未回执，frozen 为 1 时不可改。",
+  "tables": {
+    "meter": [
+      {
+        "at": "2026-01-14T08:00Z",
+        "serial": "M1",
+        "district": "north",
+        "gas_mwh": "30",
+        "heat_mwh": "43"
+      },
+      {
+        "at": "2026-01-14T09:00Z",
+        "serial": "M1",
+        "district": "north",
+        "gas_mwh": "37",
+        "heat_mwh": "53"
+      },
+      {
+        "at": "2026-01-15T08:00Z",
+        "serial": "M2",
+        "district": "north",
+        "gas_mwh": "43",
+        "heat_mwh": "58"
+      },
+      {
+        "at": "2026-01-15T09:00Z",
+        "serial": "M2",
+        "district": "north",
+        "gas_mwh": "~",
+        "heat_mwh": "59"
+      },
+      {
+        "at": "2026-01-16T08:00Z",
+        "serial": "M2",
+        "district": "north",
+        "gas_mwh": "50",
+        "heat_mwh": "69"
+      },
+      {
+        "at": "2026-01-16T09:00Z",
+        "serial": "M2",
+        "district": "north",
+        "gas_mwh": "56",
+        "heat_mwh": "76"
+      }
+    ],
+    "weather": [
+      {
+        "issued_at": "2026-01-13T08:00Z",
+        "valid_at": "2026-01-14T08:00Z",
+        "temperature_c": "-2"
+      },
+      {
+        "issued_at": "2026-01-13T08:00Z",
+        "valid_at": "2026-01-14T09:00Z",
+        "temperature_c": "-3"
+      },
+      {
+        "issued_at": "2026-01-14T08:00Z",
+        "valid_at": "2026-01-15T08:00Z",
+        "temperature_c": "-4"
+      },
+      {
+        "issued_at": "2026-01-14T08:00Z",
+        "valid_at": "2026-01-15T09:00Z",
+        "temperature_c": "-6"
+      },
+      {
+        "issued_at": "2026-01-15T08:00Z",
+        "valid_at": "2026-01-16T08:00Z",
+        "temperature_c": "-5"
+      },
+      {
+        "issued_at": "2026-01-15T08:00Z",
+        "valid_at": "2026-01-16T09:00Z",
+        "temperature_c": "-7"
+      },
+      {
+        "issued_at": "2026-01-16T08:00Z",
+        "valid_at": "2026-01-17T08:00Z",
+        "temperature_c": "-7"
+      },
+      {
+        "issued_at": "2026-01-16T08:00Z",
+        "valid_at": "2026-01-17T09:00Z",
+        "temperature_c": "-8"
+      },
+      {
+        "issued_at": "2026-01-16T13:00Z",
+        "valid_at": "2026-01-17T08:00Z",
+        "temperature_c": "-9"
+      },
+      {
+        "issued_at": "2026-01-16T13:00Z",
+        "valid_at": "2026-01-17T09:00Z",
+        "temperature_c": "-11"
+      }
+    ],
+    "dispatch": [
+      {
+        "at": "2026-01-15T09:00Z",
+        "district": "north",
+        "mode": "backup_electric"
+      },
+      {
+        "at": "2026-01-17T09:00Z",
+        "district": "north",
+        "mode": "gas"
+      }
+    ],
+    "tariff": [
+      {
+        "contract": "G1",
+        "block": "standard",
+        "daily_min_mwh": "70",
+        "block_cap_mwh": "45",
+        "unit_cost": "23",
+        "shared_pipe": "east"
+      },
+      {
+        "contract": "G1",
+        "block": "peak",
+        "daily_min_mwh": "70",
+        "block_cap_mwh": "15",
+        "unit_cost": "46",
+        "shared_pipe": "east"
+      },
+      {
+        "contract": "G2",
+        "block": "reserve",
+        "daily_min_mwh": "0",
+        "block_cap_mwh": "24",
+        "unit_cost": "65",
+        "shared_pipe": "east"
+      }
+    ],
+    "pipe": [
+      {
+        "at": "2026-01-17T08:00Z",
+        "pipe": "east",
+        "hour_limit": "64"
+      },
+      {
+        "at": "2026-01-17T09:00Z",
+        "pipe": "east",
+        "hour_limit": "56"
+      }
+    ],
+    "nomination": [
+      {
+        "at": "2026-01-17T08:00Z",
+        "contract": "G1",
+        "applied_mwh": "46",
+        "approved_mwh": "44",
+        "frozen": "1"
+      },
+      {
+        "at": "2026-01-17T09:00Z",
+        "contract": "G1",
+        "applied_mwh": "48",
+        "approved_mwh": "~",
+        "frozen": "0"
+      }
+    ]
+  }
+}
